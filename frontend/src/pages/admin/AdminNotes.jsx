@@ -144,7 +144,7 @@ const AdminNotes = () => {
                 etudiant: student || { id: note.etudiant },
               };
             });
-            setGrades(notesWithStudents);
+            setNotes(notesWithStudents);
           }
         } catch (error) {
           console.error("Error fetching data:", error);
@@ -191,7 +191,7 @@ const AdminNotes = () => {
               etudiant: student || { id: note.etudiant },
             };
           });
-          setGrades(notesWithStudents);
+          setNotes(notesWithStudents);
         }
 
         setSnackbar({
@@ -313,7 +313,7 @@ const AdminNotes = () => {
               etudiant: student || { id: note.etudiant },
             };
           });
-          setGrades(notesWithStudents);
+          setNotes(notesWithStudents);
         }
 
         setSnackbar({
@@ -354,7 +354,7 @@ const AdminNotes = () => {
               etudiant: student || { id: note.etudiant },
             };
           });
-          setGrades(notesWithStudents);
+          setNotes(notesWithStudents);
         }
 
         setSnackbar({
@@ -665,4 +665,4 @@ const AdminNotes = () => {
   );
 };
 
-export default AdminGrades;
+export default AdminNotes;

@@ -37,14 +37,14 @@ const AdminRecommendations = () => {
   const theme = useTheme();
 
 
-  useEffect(() => { fetchClasss(); }, []);
+  useEffect(() => { fetchClasses(); }, []);
 
   const fetchClasses = async () => {
     setLoading(prev => ({ ...prev, classes: true }));
     try {
       const response = await api.get(endpoints.classes.list);
       const data = await response.json();
-      setClasss(data);
+      setClasses(data);
     } catch (error) {
       showNotification('Error loading classes', 'error');
     } finally {

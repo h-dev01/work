@@ -68,7 +68,7 @@ const AdminEtudiants = () => {
       const classesData = await classesResponse.json();
       
       setEtudiants(studentsData);
-      setClasss(classesData);
+      setClasses(classesData);
       setFilteredEtudiants(studentsData);
     } catch (error) {
       console.error("Error fetching data:", error);

@@ -98,7 +98,7 @@ const GlobalAIHub = () => {
   
   // Initial Load
   useEffect(() => {
-    fetchClasss();
+    fetchClasses();
   }, []);
 
   // Reset analysis when class changes
@@ -120,7 +120,7 @@ const GlobalAIHub = () => {
     try {
       const response = await api.get(endpoints.classes.list);
       const data = await response.json();
-      setClasss(data);
+      setClasses(data);
     } catch (error) {
       showNotification('Error loading classes', 'error');
     } finally {

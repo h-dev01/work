@@ -72,7 +72,7 @@ const TeacherNotes = () => {
     if (selectedMatiere) {
       setLoading(true);
       fetchStudents()
-        .then(() => fetchGrades())
+        .then(() => fetchNotes())
         .finally(() => setLoading(false));
     }
   }, [selectedMatiere]);
@@ -127,7 +127,7 @@ const TeacherNotes = () => {
             etudiant: student || { id: note.etudiant },
           };
         });
-        setGrades(notesWithStudents);
+        setNotes(notesWithStudents);
       }
     } catch (error) {
       console.error("Error fetching notes:", error);
@@ -159,7 +159,7 @@ const TeacherNotes = () => {
 
       const data = await response.json();
       if (response.ok) {
-        fetchGrades();
+        fetchNotes();
         setSnackbar({
           open: true,
           message: data.message || "Grades imported successfully",
@@ -267,7 +267,7 @@ const TeacherNotes = () => {
 
       const data = await response.json();
       if (response.ok) {
-        fetchGrades();
+        fetchNotes();
         setSnackbar({
           open: true,
           message: data.message || "Grade created/updated successfully",
@@ -292,7 +292,7 @@ const TeacherNotes = () => {
       const response = await api.delete(endpoints.notes.teacherDelete(id));
 
       if (response.ok) {
-        fetchGrades();
+        fetchNotes();
         setSnackbar({
           open: true,
           message: "Grade deleted successfully",
@@ -755,4 +755,4 @@ const TeacherNotes = () => {
   );
 };
 
-export default TeacherGrades;
+export default TeacherNotes;

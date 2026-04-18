@@ -175,7 +175,7 @@ const StudentProfilee = () => {
               color: studentColor 
             }}
           >
-            My Profileee
+            My Profile
           </Typography>
         </Box>
         <Typography 
@@ -572,4 +572,4 @@ const StudentProfilee = () => {
   );
 };
 
-export default StudentProfileee;
+export default StudentProfilee;

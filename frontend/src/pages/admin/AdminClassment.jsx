@@ -84,7 +84,7 @@ const AdminClassment = () => {
 
   // Effets
   useEffect(() => {
-    fetchClasss();
+    fetchClasses();
   }, []);
 
   useEffect(() => {
@@ -101,7 +101,7 @@ const AdminClassment = () => {
     try {
       const response = await api.get(endpoints.classes.list);
       const data = await response.json();
-      setClasss(data);
+      setClasses(data);
     } catch (error) {
       showNotification('Error loading classes', 'error');
     } finally {

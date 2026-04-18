@@ -63,8 +63,8 @@ const AdminClasses = () => {
         const classesData = await classesResponse.json();
         const enseignantsData = await enseignantsResponse.json();
 
-        setClasss(classesData);
-        setTeachers(enseignantsData);
+        setClasses(Array.isArray(classesData) ? classesData : classesData.classes || []);
+        setTeachers(Array.isArray(enseignantsData) ? enseignantsData : enseignantsData.enseignants || []);
       } catch (error) {
         console.error("Error fetching data:", error);
         setError("Error loading data");
@@ -127,7 +127,7 @@ const AdminClasses = () => {
         // Refresh data
         const updatedClassesResponse = await api.get(endpoints.classes.list);
         const updatedClassesData = await updatedClassesResponse.json();
-        setClasss(updatedClasssData);
+        setClasses(Array.isArray(updatedClassesData) ? updatedClassesData : updatedClassesData.classes || []);
 
         setOpenDialog(false);
       } else {
@@ -147,7 +147,7 @@ const AdminClasses = () => {
         // Refresh data
         const updatedClassesResponse = await api.get(endpoints.classes.list);
         const updatedClassesData = await updatedClassesResponse.json();
-        setClasss(updatedClasssData);
+        setClasses(Array.isArray(updatedClassesData) ? updatedClassesData : updatedClassesData.classes || []);
       } else {
         throw new Error(data.error);
       }
@@ -347,4 +347,4 @@ const AdminClasses = () => {
   );
 };
 
-export default AdminClasss;
+export default AdminClasses;

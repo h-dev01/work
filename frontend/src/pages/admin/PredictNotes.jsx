@@ -44,13 +44,13 @@ const PredictNotes = () => {
       try {
         const response = await api.get(endpoints.classes.list);
         const data = await response.json();
-        setClasss(data);
+        setClasses(Array.isArray(data) ? data : data.classes || []);
       } catch (err) {
         setError('Error loading classes');
         console.error(err);
       }
     };
-    fetchClasss();
+    fetchClasses();
   }, []);
 
   const handlePredict = async () => {
@@ -383,4 +383,4 @@ const PredictNotes = () => {
   );
 };
 
-export default PredictGrades;
+export default PredictNotes;

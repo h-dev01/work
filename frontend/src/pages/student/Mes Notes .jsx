@@ -36,10 +36,10 @@ const StudentNotes = () => {
       if (data.success && Array.isArray(data.notes)) {
         const filteredNotes = data.notes.filter(note => note.date_ajout);
 
-        setGrades(filteredGrades);
+        setNotes(filteredNotes);
       } else {
         console.error("Invalid API response format:", data);
-        setGrades([]);
+        setNotes([]);
       }
 
       setLoading(false);
@@ -266,4 +266,4 @@ const StudentNotes = () => {
   );
 };
 
-export default StudentGrades;
+export default StudentNotes;

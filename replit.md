@@ -11,3 +11,6 @@
 - Frontend API calls use relative `/api` URLs so requests flow through the Vite proxy in development.
 - The app workflow should apply Django migrations, start Django on `127.0.0.1:8000`, and start Vite on `0.0.0.0:5000`.
 - Django CORS/CSRF settings allow local frontend origins and Replit preview/deployment domains without enabling wildcard CORS.
+
+## Recent Stabilization
+- Fixed remaining React runtime typos in admin pages by aligning class state/function references (`fetchClasses`, `setClasses`) across student, subject, ranking, alert, recommendation, and AI hub pages.

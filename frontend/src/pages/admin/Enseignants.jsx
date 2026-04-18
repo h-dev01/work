@@ -55,7 +55,7 @@ const AdminEnseignants = () => {
     try {
       const response = await api.get(endpoints.teachers.list);
       const data = await response.json();
-      setTeachers(data);
+      setTeachers(Array.isArray(data) ? data : data.enseignants || []);
     } catch (error) {
       console.error("Error fetching enseignants:", error);
       setError("Error loading teachers");
@@ -424,4 +424,4 @@ const AdminEnseignants = () => {
   );
 };
 
-export default AdminTeachers;
+export default AdminEnseignants;
