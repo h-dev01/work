@@ -9,4 +9,5 @@
 ## Replit Setup
 - Vite is configured with `host: 0.0.0.0`, `port: 5000`, and `allowedHosts: true` for the Replit preview proxy.
 - Frontend API calls use relative `/api` URLs so requests flow through the Vite proxy in development.
-- The app workflow should start Django on `127.0.0.1:8000` and Vite on `0.0.0.0:5000`.
+- The app workflow should apply Django migrations, start Django on `127.0.0.1:8000`, and start Vite on `0.0.0.0:5000`.
+- Django CORS/CSRF settings allow local frontend origins and Replit preview/deployment domains without enabling wildcard CORS.

@@ -17,7 +17,7 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-fallback-key')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.onrender.com,.replit.dev,.replit.app').split(',')
+ALLOWED_HOSTS = [host.strip() for host in os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1,.onrender.com,.replit.dev,.replit.app').split(',') if host.strip()]
 AUTH_USER_MODEL = 'data.Utilisateur'
 
 # Application definition
@@ -45,31 +45,40 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     "whitenoise.middleware.WhiteNoiseMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    "corsheaders.middleware.CorsMiddleware",
-    "django.middleware.common.CommonMiddleware",
     
 ]
+
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173",  # Replace with your frontend's URL
+    origin.strip()
+    for origin in os.getenv('CORS_ALLOWED_ORIGINS', 'http://localhost:5000,http://127.0.0.1:5000').split(',')
+    if origin.strip()
 ]
-CSRF_COOKIE_SAMESITE = 'Lax'  # Or 'None' if using cross-site
-CSRF_COOKIE_HTTPONLY = False  # False because we need it accessible from JavaScript
-CSRF_COOKIE_SECURE = True  # True in production, can be False in development
+CORS_ALLOWED_ORIGIN_REGEXES = [
+    r"^https://.*\.replit\.dev$",
+    r"^https://.*\.replit\.app$",
+]
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS + [
+    "https://*.replit.dev",
+    "https://*.replit.app",
+]
+CSRF_COOKIE_SAMESITE = 'Lax'
+CSRF_COOKIE_HTTPONLY = False
+CSRF_COOKIE_SECURE = not DEBUG
 
 # Session settings
-SESSION_COOKIE_SAMESITE = 'Lax'  # Or 'None' if using cross-site
-SESSION_COOKIE_HTTPONLY = True  # Keep this True for security
-SESSION_COOKIE_SECURE = True  # True in production, can be False in development
+SESSION_COOKIE_SAMESITE = 'Lax'
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SECURE = not DEBUG
 
-# For development only - adjust for production
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True  
+CORS_ALLOW_ALL_ORIGINS = False
 
 ROOT_URLCONF = 'dashboard.urls'
 
