@@ -1,0 +1,39 @@
+modules = ["nodejs-20", "python-3.12", "web"]
+[agent]
+expertMode = true
+
+[nix]
+channel = "stable-25_05"
+packages = ["zip"]
+
+[workflows]
+runButton = "Project"
+
+[[workflows.workflow]]
+name = "Project"
+mode = "parallel"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "Start application"
+
+[[workflows.workflow]]
+name = "Start application"
+author = "agent"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "bash -c 'cd backend && DEBUG=True python3 manage.py runserver 127.0.0.1:8000 & cd frontend && npm run dev -- --host 0.0.0.0 --port 5000'"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[deployment]
+deploymentTarget = "autoscale"
+run = ["bash", "-c", "python3 -m pip install -r backend/requirements.txt && npm ci --prefix frontend --legacy-peer-deps && ((cd backend && DEBUG=False ALLOWED_HOSTS='localhost,127.0.0.1,.replit.app,.replit.dev' python3 manage.py migrate && DEBUG=False ALLOWED_HOSTS='localhost,127.0.0.1,.replit.app,.replit.dev' gunicorn dashboard.wsgi:application --bind 127.0.0.1:8000) & cd frontend && npm run dev -- --host 0.0.0.0 --port 5000)"]

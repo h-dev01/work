@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+    container_name: eduky_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/db.sqlite3:/app/db.sqlite3
+    environment:
+      - DEBUG=1
+    restart: always
+
+  frontend:
+    build: 
+      context: ./frontend
+    container_name: eduky_frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: always

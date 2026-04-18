@@ -1,0 +1,16 @@
+{
+    "compilerOptions": {
+      "checkJs": true,
+      "jsx": "react-jsx",
+      "baseUrl": "src",
+      "resolveJsonModule": true,
+      "lib": ["esnext", "dom", "dom.iterable"],
+    },
+    "include": [
+      "src"
+    ],
+    "exclude": [
+      "node_modules",
+      "build"
+    ]
+  }
