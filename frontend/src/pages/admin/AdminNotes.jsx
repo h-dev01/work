@@ -205,7 +205,7 @@ const AdminNotes = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -328,7 +328,7 @@ const AdminNotes = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -368,7 +368,7 @@ const AdminNotes = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -465,7 +465,7 @@ const AdminNotes = () => {
           sx={{ mr: 2 }}
           disabled={!selectedMatiere}
         >
-          Importer CSV
+          Import CSV
           <input
             type="file"
             hidden
@@ -479,7 +479,7 @@ const AdminNotes = () => {
           onClick={() => handleOpenDialog()}
           disabled={!selectedMatiere}
         >
-          Nouvelle Note
+          New Grade
         </Button>
       </Box>
 
@@ -524,8 +524,8 @@ const AdminNotes = () => {
               <TableHead>
                 <TableRow>
                   <TableCell sx={{ fontWeight: 'bold' }}>Student</TableCell>
-                  <TableCell align="center" sx={{ fontWeight: 'bold' }}>Note Module</TableCell>
-                  <TableCell align="center" sx={{ fontWeight: 'bold' }}>Note Devoir/Projet</TableCell>
+                  <TableCell align="center" sx={{ fontWeight: 'bold' }}>Module Grade</TableCell>
+                  <TableCell align="center" sx={{ fontWeight: 'bold' }}>Assignment/Project Grade</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Attendance</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Presence</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Actions</TableCell>
@@ -595,7 +595,7 @@ const AdminNotes = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 name="note_module"
-                label="Note Module"
+                label="Module Grade"
                 fullWidth
                 type="number"
                 value={formData.note_module}
@@ -606,7 +606,7 @@ const AdminNotes = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 name="note_devoir_projet"
-                label="Note Devoir/Projet"
+                label="Assignment/Project Grade"
                 fullWidth
                 type="number"
                 value={formData.note_devoir_projet}

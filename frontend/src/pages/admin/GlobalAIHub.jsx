@@ -328,7 +328,7 @@ const GlobalAIHub = () => {
           ))}
           {dashboardData.recommendations.length === 0 && (
               <Grid item xs={12}>
-                  <Alert severity="info" variant="outlined">No recommendations generated pour cette classe.</Alert>
+                  <Alert severity="info" variant="outlined">No recommendations generated for this class.</Alert>
               </Grid>
           )}
       </Grid>
@@ -361,7 +361,7 @@ const GlobalAIHub = () => {
                             onChange={(e) => setSelectedClass(e.target.value)}
                             label="Choose a Class"
                           >
-                            <MenuItem value=""><em>Aucune</em></MenuItem>
+                            <MenuItem value=""><em>None</em></MenuItem>
                             {classes.map((cls) => (
                               <MenuItem key={cls.id} value={cls.id}>{cls.nom}</MenuItem>
                             ))}
@@ -427,7 +427,7 @@ const GlobalAIHub = () => {
                               {activeTab === 0 && (
                                   <Box>
                                       <Box display="flex" justifyContent="space-between" mb={3}>
-                                          <Typography variant="h6">Performance des Students</Typography>
+                                          <Typography variant="h6">Student Performance</Typography>
                                       </Box>
                                       <TableContainer>
                                           <Table>
@@ -435,7 +435,7 @@ const GlobalAIHub = () => {
                                                   <TableRow>
                                                       <TableCell>Student</TableCell>
                                                       <TableCell align="center">General Average</TableCell>
-                                                      <TableCell align="center">Statut IA</TableCell>
+                                                      <TableCell align="center">AI Status</TableCell>
                                                       <TableCell align="right">Actions</TableCell>
                                                   </TableRow>
                                               </TableHead>

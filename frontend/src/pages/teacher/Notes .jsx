@@ -171,7 +171,7 @@ const TeacherNotes = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -280,7 +280,7 @@ const TeacherNotes = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -304,7 +304,7 @@ const TeacherNotes = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -365,7 +365,7 @@ const TeacherNotes = () => {
             onChange={handleMatiereFilterChange}
             label="Filter by Subject"
           >
-            <MenuItem value="">All les Subjects</MenuItem>
+            <MenuItem value="">All Subjects</MenuItem>
             {matieres.map((matiere) => (
               <MenuItem key={matiere.id} value={matiere.id}>
                 {matiere.nom}
@@ -403,7 +403,7 @@ const TeacherNotes = () => {
               }
             }}
           >
-            Importer CSV
+            Import CSV
             <input
               type="file"
               hidden
@@ -445,7 +445,7 @@ const TeacherNotes = () => {
                       fontSize: "1rem"
                     }}
                   >
-                    Note Module
+                    Module Grade
                   </TableCell>
                   <TableCell 
                     align="center" 
@@ -455,7 +455,7 @@ const TeacherNotes = () => {
                       fontSize: "1rem"
                     }}
                   >
-                    Note Devoir/Projet
+                    Assignment/Project Grade
                   </TableCell>
                   <TableCell 
                     align="center" 
@@ -639,7 +639,7 @@ const TeacherNotes = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 name="note_module"
-                label="Note Module"
+                label="Module Grade"
                 fullWidth
                 value={formData.note_module}
                 onChange={handleInputChange}
@@ -656,7 +656,7 @@ const TeacherNotes = () => {
             <Grid item xs={12} sm={6}>
               <TextField
                 name="note_devoir_projet"
-                label="Note Devoir/Projet"
+                label="Assignment/Project Grade"
                 fullWidth
                 value={formData.note_devoir_projet}
                 onChange={handleInputChange}

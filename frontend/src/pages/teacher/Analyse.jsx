@@ -127,7 +127,7 @@ const TeacherAnalysis = () => {
       <Box sx={{ mb: 4 }}>
         <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
           <Typography variant="h4" color="primary.main" fontWeight="bold">
-            Classifications des Students
+            Student Classifications
           </Typography>
         </Box>
         <Typography variant="subtitle1" color="text.secondary" gutterBottom>
@@ -204,7 +204,7 @@ const TeacherAnalysis = () => {
                     <TableCell align="center" sx={{ color: theme.palette.primary.main, fontWeight: 'bold' }}>
                         AI Prediction (General)
                     </TableCell>
-                    <TableCell align="center">Statut Global IA</TableCell>
+                    <TableCell align="center">Overall AI Status</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

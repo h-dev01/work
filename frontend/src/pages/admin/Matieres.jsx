@@ -135,7 +135,7 @@ const AdminMatieres = () => {
       console.error("Error uploading file:", error);
       setSnackbar({
         open: true,
-        message: error.message || "Une erreur est survenue",
+        message: error.message || "An error occurred",
         severity: "error",
       });
     }
@@ -250,7 +250,7 @@ const AdminMatieres = () => {
     } catch (error) {
       setSnackbar({
         open: true,
-        message: "Une erreur est survenue",
+        message: "An error occurred",
         severity: "error",
       });
     }
@@ -366,7 +366,7 @@ const AdminMatieres = () => {
           startIcon={<CloudUploadIcon />}
           sx={{ mr: 2 }}
         >
-          Importer CSV
+          Import CSV
           <input
             type="file"
             hidden
@@ -394,15 +394,15 @@ const AdminMatieres = () => {
             <TextField
               select
               fullWidth
-              label="Semestre"
+              label="Semester"
               name="semestre"
               value={filters.semestre}
               onChange={(e) => setFilters({...filters, semestre: e.target.value})}
             >
-              <MenuItem value="">Tous</MenuItem>
+              <MenuItem value="">All</MenuItem>
               {[1, 2, 3, 4].map((semester) => (
                 <MenuItem key={semester} value={semester}>
-                  Semestre {semester}
+                  Semester {semester}
                 </MenuItem>
               ))}
             </TextField>
@@ -438,7 +438,7 @@ const AdminMatieres = () => {
                 <TableRow>
                   <TableCell sx={{ fontWeight: 'bold' }}>Subject Name</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Coefficient</TableCell>
-                  <TableCell align="center" sx={{ fontWeight: 'bold' }}>Semestre</TableCell>
+                  <TableCell align="center" sx={{ fontWeight: 'bold' }}>Semester</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Class</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Teacher</TableCell>
                   <TableCell align="center" sx={{ fontWeight: 'bold' }}>Actions</TableCell>
@@ -505,7 +505,7 @@ const AdminMatieres = () => {
         fullWidth
       >
         <DialogTitle>
-          {editMode ? "Edit Subject" : "Create une New Subject"}
+          {editMode ? "Edit Subject" : "Create a New Subject"}
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ mt: 1 }}>
@@ -534,16 +534,16 @@ const AdminMatieres = () => {
               <TextField
                 select
                 name="semestre"
-                label="Semestre"
+                label="Semester"
                 fullWidth
                 value={formData.semestre}
                 onChange={handleInputChange}
                 required
               >
-                <MenuItem value={1}>Semestre 1</MenuItem>
-                <MenuItem value={2}>Semestre 2</MenuItem>
-                <MenuItem value={3}>Semestre 3</MenuItem>
-                <MenuItem value={4}>Semestre 4</MenuItem>
+                <MenuItem value={1}>Semester 1</MenuItem>
+                <MenuItem value={2}>Semester 2</MenuItem>
+                <MenuItem value={3}>Semester 3</MenuItem>
+                <MenuItem value={4}>Semester 4</MenuItem>
               </TextField>
             </Grid>
             <Grid item xs={12} sm={6}>

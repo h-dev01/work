@@ -194,7 +194,7 @@ const PredictNotes = () => {
                 startAdornment={<FilterListIcon color="action" sx={{ mr: 1 }} />}
               >
                 <MenuItem value="">
-                  <em>All les classes</em>
+                  <em>All Classes</em>
                 </MenuItem>
                 {classes.map((classe) => (
                   <MenuItem key={classe.id} value={classe.id}>

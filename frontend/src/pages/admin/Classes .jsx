@@ -134,7 +134,7 @@ const AdminClasses = () => {
         throw new Error("Request error");
       }
     } catch (error) {
-      setError("Une erreur est survenue lors de la sauvegarde");
+      setError("An error occurred while saving");
     }
   };
 
@@ -301,7 +301,7 @@ const AdminClasses = () => {
         fullWidth
       >
         <DialogTitle>
-          {editMode ? "Edit Class" : "Create une New Class"}
+          {editMode ? "Edit Class" : "Create a New Class"}
         </DialogTitle>
         <DialogContent>
           <Grid container spacing={2} sx={{ mt: 1 }}>

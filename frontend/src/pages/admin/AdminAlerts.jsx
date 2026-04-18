@@ -190,7 +190,7 @@ const AdminAlerts = () => {
                     <TableHead>
                       <TableRow>
                         <TableCell sx={{ fontWeight: 'bold' }}>Student</TableCell>
-                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Statut</TableCell>
+                        <TableCell align="center" sx={{ fontWeight: 'bold' }}>Status</TableCell>
                         <TableCell sx={{ fontWeight: 'bold' }}>Alert Message</TableCell>
                         <TableCell sx={{ fontWeight: 'bold' }}>Actions</TableCell>
                       </TableRow>

@@ -221,7 +221,7 @@ const AdminClassment = () => {
                     {classData.stats.average_score?.toFixed(2)}
                   </Typography>
                   <Typography variant="body2" color="text.secondary">
-                    Score moyen
+                    Average score
                   </Typography>
                 </Box>
               </CardContent>
@@ -276,7 +276,7 @@ const AdminClassment = () => {
                   <TableRow>
                     <TableCell sx={{ fontWeight: 'bold' }}>Student</TableCell>
                     <TableCell align="center" sx={{ fontWeight: 'bold' }}>Average</TableCell>
-                    <TableCell align="center" sx={{ fontWeight: 'bold' }}>Statut</TableCell>
+                    <TableCell align="center" sx={{ fontWeight: 'bold' }}>Status</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>

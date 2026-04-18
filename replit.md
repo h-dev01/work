@@ -14,3 +14,4 @@
 
 ## Recent Stabilization
 - Fixed remaining React runtime typos in admin pages by aligning class state/function references (`fetchClasses`, `setClasses`) across student, subject, ranking, alert, recommendation, and AI hub pages.
+- Translated remaining visible French UI labels/messages to English across admin, teacher, student, and AI/prediction pages while keeping backend-required CSV column headers unchanged.

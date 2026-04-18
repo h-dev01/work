@@ -164,7 +164,7 @@ const AdminEtudiants = () => {
         throw new Error("Request error");
       }
     } catch (error) {
-      setError("Une erreur est survenue lors de la sauvegarde");
+      setError("An error occurred while saving");
     }
   };
 
@@ -202,7 +202,7 @@ const AdminEtudiants = () => {
         throw new Error(errorData.error || "Error importing CSV file");
       }
     } catch (error) {
-      setError(error.message || "Une erreur est survenue");
+      setError(error.message || "An error occurred");
     }
   };
 
@@ -280,7 +280,7 @@ const AdminEtudiants = () => {
             <CardContent sx={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
               <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
                 <Typography variant="subtitle2" color="text.secondary">
-                  Total des Students
+                  Total Students
                 </Typography>
                 <PersonIcon 
                   fontSize="medium" 
@@ -316,7 +316,7 @@ const AdminEtudiants = () => {
           startIcon={<CloudUploadIcon />}
           sx={{ mr: 2 }}
         >
-          Importer CSV
+          Import CSV
           <input
             type="file"
             hidden
@@ -329,7 +329,7 @@ const AdminEtudiants = () => {
           startIcon={<AddIcon />}
           onClick={() => handleOpenDialog()}
         >
-          Nouvel Student
+          New Student
         </Button>
       </Box>
 

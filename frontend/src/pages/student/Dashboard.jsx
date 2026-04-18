@@ -81,7 +81,7 @@ const StudentDashboard = () => {
 
              } catch (err) {
                  console.error(err);
-                 setError("Impossible de charger le tableau de bord.");
+                 setError("Unable to load the dashboard.");
              } finally {
                  setLoading(false);
              }
@@ -122,11 +122,11 @@ const StudentDashboard = () => {
                 </Grid>
                  <Grid item xs={12} sm={6} md={3}>
                     <StudentStatCard 
-                        title="Statut IA"
+                        title="AI Status"
                         value={newData?.cards?.status_label || "-"}
                         icon={<SentimentSatisfiedAlt />}
                         color={theme.palette.secondary.main}
-                        subtitle="Performance globale"
+                        subtitle="Overall performance"
                     />
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
@@ -141,7 +141,7 @@ const StudentDashboard = () => {
                
                 <Grid item xs={12} sm={6} md={3}>
                     <StudentStatCard 
-                        title="Avertissements"
+                        title="Warnings"
                         value={newData?.cards?.alert_count || 0}
                         icon={<NotificationsActive />}
                         color={theme.palette.warning.main}
@@ -235,7 +235,7 @@ const StudentDashboard = () => {
                     <Card elevation={2} sx={{ height: 400 }}>
                         <CardContent>
                             <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                Historique d'Attendance
+                                Attendance History
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                              <ResponsiveContainer width="100%" height={300}>

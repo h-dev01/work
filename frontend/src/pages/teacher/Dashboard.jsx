@@ -74,7 +74,7 @@ const TeacherDashboard = () => {
                 if (data.success) {
                     setStats(data);
                 } else {
-                    throw new Error(data.message || "Impossible de charger les statistiques.");
+                    throw new Error(data.message || "Unable to load statistics.");
                 }
             } catch (err) {
                 console.error(err);
