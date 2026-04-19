@@ -110,16 +110,29 @@ const TeacherAnalysis = () => {
     if (!category) return theme.palette.grey[500];
     
     const categoryLower = category.toLowerCase();
-    if (categoryLower.includes('bon performeur') || categoryLower.includes('excellent')) {
+    if (categoryLower.includes('high performer') || categoryLower.includes('bon performeur') || categoryLower.includes('excellent')) {
       return theme.palette.success.main;
-    } else if (categoryLower.includes('moyenne performance')) {
+    } else if (categoryLower.includes('average performance') || categoryLower.includes('moyenne performance')) {
       return theme.palette.warning.main;
-    } else if (categoryLower.includes('à risque')) {
+    } else if (categoryLower.includes('at risk') || categoryLower.includes('à risque')) {
       return theme.palette.error.main;
     } else {
       return theme.palette.grey[500];
     }
   };
+
+  const displayCategory = (category) => {
+    const labels = {
+      'À risque': 'At Risk',
+      'Moyenne performance': 'Average Performance',
+      'Bon performeur': 'High Performer',
+      'Non Analysé': 'Not Analyzed',
+      'Non évalué': 'Not Evaluated',
+    };
+    return labels[category] || category;
+  };
+
+  const displaySubject = (name) => name?.replaceAll('Mathématiques', 'Mathematics');
 
   return (
     <Box>
@@ -150,7 +163,7 @@ const TeacherAnalysis = () => {
               >
                 {matieres.map((matiere) => (
                   <MenuItem key={matiere.id} value={matiere.id}>
-                    {matiere.nom}
+                    {displaySubject(matiere.nom)}
                   </MenuItem>
                 ))}
               </Select>
@@ -214,7 +227,7 @@ const TeacherAnalysis = () => {
                       <TableCell>
                         <Chip 
                           icon={<CategoryIcon />}
-                          label={classification.performance_category} 
+                          label={displayCategory(classification.performance_category)} 
                           size="small"
                           sx={{ 
                             backgroundColor: getCategoryColor(classification.performance_category),
@@ -237,9 +250,9 @@ const TeacherAnalysis = () => {
                           )}
                       </TableCell>
                       <TableCell align="center">
-                          {classification.ai_category && classification.ai_category !== "Not Analyzed" ? (
+                          {classification.ai_category && displayCategory(classification.ai_category) !== "Not Analyzed" ? (
                              <Chip
-                                label={classification.ai_category}
+                                label={displayCategory(classification.ai_category)}
                                 size="small"
                                 sx={{ 
                                     backgroundColor: getCategoryColor(classification.ai_category),

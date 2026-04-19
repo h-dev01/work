@@ -9,6 +9,7 @@ from rest_framework import status
 
 from ..models import Utilisateur, Classe, Matiere, Note, Alerte, Recommandation, Performance
 from ..serializers import UtilisateurSerializer, ClasseSerializer, MatiereSerializer, NoteSerializer
+from ..display import display_performance_label, display_subject_name
 
 logger = logging.getLogger(__name__)
 
@@ -270,10 +271,10 @@ def get_teacher_alerts(request):
                 'student_id': alert.etudiant.id,
                 'student_name': f"{alert.etudiant.first_name} {alert.etudiant.last_name}",
                 'message': alert.message,
-                'performance_category': 'À risque',
+                'performance_category': 'At Risk',
                 'average_score': round(float(avg_score), 2),
                 'matiere_id': matiere_id,
-                'matiere_name': matiere.nom
+                'matiere_name': display_subject_name(matiere.nom)
             })
 
         return Response({'success': True, 'alerts': alerts_data})
@@ -321,19 +322,19 @@ def get_teacher_classifications(request):
             
             if avg_score is not None:
                 if avg_score >= 16:
-                    perf_cat = 'Bon performeur'
+                    perf_cat = 'High Performer'
                 elif avg_score >= 12:
-                    perf_cat = 'Moyenne performance'
+                    perf_cat = 'Average Performance'
                 else:
-                    perf_cat = 'À risque'
+                    perf_cat = 'At Risk'
                 display_score = round(avg_score, 2)
             else:
-                perf_cat = 'Non évalué'
+                perf_cat = 'Not Evaluated'
                 display_score = "N/A"
 
             # AI Global Performance
             ai_data = perf_map.get(student.id)
-            ai_category = ai_data.categorie_risque if ai_data else "Non Analysé"
+            ai_category = display_performance_label(ai_data.categorie_risque) if ai_data else "Not Analyzed"
             ai_prediction = round(ai_data.moyenne_generale, 2) if ai_data and ai_data.moyenne_generale else "-"
 
             classifications_data.append({
@@ -344,7 +345,7 @@ def get_teacher_classifications(request):
                 'ai_category': ai_category,
                 'ai_prediction': ai_prediction,
                 'matiere_id': matiere_id,
-                'matiere_name': matiere.nom
+                'matiere_name': display_subject_name(matiere.nom)
             })
 
         return Response({'success': True, 'classifications': classifications_data})

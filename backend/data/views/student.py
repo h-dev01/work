@@ -10,6 +10,7 @@ from rest_framework import status
 
 from ..models import Note, Matiere, Alerte, Recommandation
 from ..serializers import NoteSerializer
+from ..display import display_subject_name
 
 logger = logging.getLogger(__name__)
 
@@ -87,7 +88,7 @@ def student_dashboard(request):
         # 3. Recent grades (last 3 notes)
         recent_notes = notes.order_by('-date_ajout')[:3]
         data['recentGrades'] = [{
-            'course': note.matiere.nom if note.matiere else 'Unknown',
+            'course': display_subject_name(note.matiere.nom) if note.matiere else 'Unknown',
             'grade': note.note_module,
             'date': note.date_ajout.strftime('%d/%m/%Y') if note.date_ajout else ''
         } for note in recent_notes]
@@ -115,7 +116,7 @@ def student_dashboard(request):
         # 5. Subject performance
         subjects = Matiere.objects.filter(note__etudiant=student).distinct()
         data['subjectPerformance'] = [{
-            'name': sub.nom,
+            'name': display_subject_name(sub.nom),
             'value': round(float(
                 notes.filter(matiere=sub).aggregate(avg=Avg('note_module'))['avg'] or 0
             ), 1)

@@ -5,6 +5,7 @@ from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.db.models import Avg, Count
 from django.db.models.functions import TruncMonth
 from ..models import Note, Performance, Matiere
+from ..display import display_performance_label, display_subject_name
 
 @api_view(['GET'])
 @authentication_classes([JWTAuthentication])
@@ -71,12 +72,15 @@ def get_category_distribution(request):
         'À risque': '#F44336',  # Red
         'Moyenne performance': '#FFC107',   # Amber
         'Bon performeur': '#4CAF50',     # Green
+        'At Risk': '#F44336',
+        'Average Performance': '#FFC107',
+        'High Performer': '#4CAF50',
     }
 
     # Transform data for frontend
     chart_data = [
         {
-            'name': entry['categorie_risque'],
+            'name': display_performance_label(entry['categorie_risque']),
             'value': entry['count'],
             'color': color_map.get(entry['categorie_risque'], '#9C27B0')
         } for entry in category_data
@@ -99,7 +103,7 @@ def get_subject_success_rate(request):
     # Transform data for frontend
     chart_data = [
         {
-            'subject': entry['nom'],
+            'subject': display_subject_name(entry['nom']),
             'success_rate': round(entry['success_rate'], 2)
         } for entry in subject_data
     ]

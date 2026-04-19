@@ -239,7 +239,7 @@ const TeacherDashboard = () => {
                                     <Tooltip />
                                     <Legend />
                                     <Line type="monotone" dataKey="msgs" stroke={theme.palette.primary.main} name="Messages" strokeWidth={2} />
-                                    <Line type="monotone" dataKey="files" stroke={theme.palette.secondary.main} name="Fichiers" strokeWidth={2} />
+                                    <Line type="monotone" dataKey="files" stroke={theme.palette.secondary.main} name="Files" strokeWidth={2} />
                                 </LineChart>
                             </ResponsiveContainer>
                         </CardContent>

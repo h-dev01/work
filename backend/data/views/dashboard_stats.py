@@ -4,6 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.authentication import JWTAuthentication
 from django.db.models import Avg, Count
 from ..models import Utilisateur, Classe, Matiere, Note, Performance, Alerte
+from ..display import display_performance_label, display_subject_name
 import logging
 import math
 
@@ -22,7 +23,7 @@ def get_performance_distribution(students_queryset):
     formatted = []
     total = 0
     for d in dist:
-        formatted.append({'name': d['categorie_risque'], 'value': d['count']})
+        formatted.append({'name': display_performance_label(d['categorie_risque']), 'value': d['count']})
         total += d['count']
         
     return formatted, total
@@ -52,7 +53,7 @@ def admin_dashboard_stats(request):
         global_avg = global_avg_q['moyenne_generale__avg'] or 0
         
         # At Risk Count
-        at_risk_count = Performance.objects.filter(categorie_risque='À risque').count()
+        at_risk_count = Performance.objects.filter(categorie_risque__in=['À risque', 'At Risk']).count()
         
         # Mock Attendance (since Note has assiduite/presence, we aggregate that)
         # Note: 'presence' in Note model is integer. Let's assume it's hours/days.
@@ -65,7 +66,7 @@ def admin_dashboard_stats(request):
         # Chart: Performance Distribution (Pie)
         perf_dist, _ = get_performance_distribution(students)
         if not perf_dist:
-             perf_dist = [{'name': 'Non Analysé', 'value': total_students}]
+             perf_dist = [{'name': 'Not Analyzed', 'value': total_students}]
 
         # Chart: Teacher Workload (Top 5 Teachers by Student Count)
         # Assuming teachers are linked to classes, and classes to students.
@@ -142,7 +143,7 @@ def teacher_dashboard_stats(request):
         my_avg = my_notes.aggregate(Avg('note_module'))['note_module__avg'] or 0
         
         # At Risk in my classes (Global Status)
-        at_risk = Performance.objects.filter(etudiant_id__in=students_ids, categorie_risque='À risque').count()
+        at_risk = Performance.objects.filter(etudiant_id__in=students_ids, categorie_risque__in=['À risque', 'At Risk']).count()
         
         # 2. Charts
         
@@ -160,8 +161,8 @@ def teacher_dashboard_stats(request):
         pass_count = my_notes.filter(note_module__gte=10).count()
         fail_count = my_notes.filter(note_module__lt=10).count()
         pass_fail_data = [
-            {'name': 'Réussite (>10)', 'value': pass_count},
-            {'name': 'Échec (<10)', 'value': fail_count}
+            {'name': 'Pass (>10)', 'value': pass_count},
+            {'name': 'Fail (<10)', 'value': fail_count}
         ]
         if pass_count == 0 and fail_count == 0:
              pass_fail_data = [] # Or placeholder
@@ -235,7 +236,7 @@ def student_dashboard_stats(request):
         
         # Global Perf (for Rank/Status)
         perf = Performance.objects.filter(etudiant=student).first()
-        status_label = perf.categorie_risque if perf else "Non Analysé"
+        status_label = display_performance_label(perf.categorie_risque) if perf else "Not Analyzed"
         
         # 2. Charts
         
@@ -243,7 +244,7 @@ def student_dashboard_stats(request):
         # Subjects the student has
         radar_data = []
         for note in my_notes.select_related('matiere'):
-            subject_name = note.matiere.nom
+            subject_name = display_subject_name(note.matiere.nom)
             my_grade = note.note_module
             
             # Class Avg for this subject

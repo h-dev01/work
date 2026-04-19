@@ -136,7 +136,7 @@ const AdminDashboard = () => {
                 </Grid>
                 <Grid item xs={12} sm={6} md={3}>
                     <StatCard 
-                        title="Taux de Presence"
+                        title="Attendance Rate"
                         value={`${stats?.cards?.attendance_rate}%`}
                         icon={<CheckCircleIcon />}
                         color={theme.palette.success.main}
@@ -162,7 +162,7 @@ const AdminDashboard = () => {
                     <Card elevation={2} sx={{ height: 400 }}>
                         <CardContent>
                             <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                Distribution des Performances IA
+                                AI Performance Distribution
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                             <ResponsiveContainer width="100%" height={300}>
@@ -193,7 +193,7 @@ const AdminDashboard = () => {
                     <Card elevation={2} sx={{ height: 400 }}>
                         <CardContent>
                             <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                Tendance de l'Attendance (Mensuelle)
+                                Attendance Trend (Monthly)
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                             <ResponsiveContainer width="100%" height={300}>
@@ -223,7 +223,7 @@ const AdminDashboard = () => {
                                     <XAxis dataKey="subject" tick={false} /> {/* Hide labels if too long */}
                                     <YAxis domain={[0, 20]} />
                                     <Tooltip />
-                                    <Bar dataKey="success_rate" fill={theme.palette.primary.main} name="Note Moy." />
+                                    <Bar dataKey="success_rate" fill={theme.palette.primary.main} name="Average Grade" />
                                 </BarChart>
                             </ResponsiveContainer>
                         </CardContent>
@@ -235,7 +235,7 @@ const AdminDashboard = () => {
                     <Card elevation={2} sx={{ height: 400 }}>
                         <CardContent>
                             <Typography variant="h6" fontWeight="bold" gutterBottom>
-                                Charge Teacher (Top 5)
+                                Teacher Workload (Top 5)
                             </Typography>
                             <Divider sx={{ mb: 2 }} />
                             <ResponsiveContainer width="100%" height={300}>
@@ -244,7 +244,7 @@ const AdminDashboard = () => {
                                     <XAxis type="number" />
                                     <YAxis dataKey="name" type="category" width={100} />
                                     <Tooltip />
-                                    <Bar dataKey="students" fill={theme.palette.secondary.main} name="Nb Students" />
+                                    <Bar dataKey="students" fill={theme.palette.secondary.main} name="Students" />
                                 </BarChart>
                             </ResponsiveContainer>
                         </CardContent>
